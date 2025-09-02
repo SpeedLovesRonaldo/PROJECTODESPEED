@@ -285,28 +285,46 @@
             80% { transform: translate(2px, -2px); }
         }
 
-        /* Subtitle */
+        /* Enhanced Subtitle - Made in Romania (Clean & Cool) */
         .subtitle {
-            font-family: 'Rajdhani', monospace;
-            font-size: clamp(1rem, 3vw, 1.5rem);
-            color: var(--text-secondary);
-            margin-top: 1rem;
-            animation: typewriter 3s steps(20) infinite;
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            position: relative;
+            animation: subtitlePulse 4s ease-in-out infinite;
         }
 
         .bracket {
             color: var(--neon-purple);
-            font-weight: bold;
+            font-weight: 800;
+            font-size: 1.1em;
+            text-shadow: 0 0 10px currentColor;
         }
 
         .cyber-text {
             color: var(--neon-green);
-            text-shadow: 0 0 10px currentColor;
+            text-shadow: 0 0 15px currentColor;
+            font-weight: 700;
+            position: relative;
         }
 
-        @keyframes typewriter {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0.7; }
+        .cyber-text:hover {
+            color: var(--electric-cyan);
+            text-shadow: 0 0 25px currentColor;
+            transition: all 0.3s ease;
+        }
+
+        @keyframes subtitlePulse {
+            0%, 100% {
+                opacity: 0.9;
+            }
+            50% {
+                opacity: 1;
+            }
         }
 
         /* Enhanced Cyberpunk Background Elements */
@@ -905,9 +923,9 @@
                 wsg Cyber Sara
             </h1>
             <div class="subtitle">
-                <span class="bracket">[</span>
-                <span class="cyber-text">made in Romania</span>
-                <span class="bracket">]</span>
+                <span class="bracket">⟨</span>
+                <span class="cyber-text">MADE IN ROMANIA</span>
+                <span class="bracket">⟩</span>
             </div>
             
             <!-- Audio Controls -->
