@@ -864,11 +864,122 @@
     
     <!-- Hidden Audio Element -->
     <audio id="audioPlayer" preload="none">
+        <source src="https://github.com/SpeedLovesRonaldo/PROJECTODESPEED/raw/main/25fcabd7-9c22-4244-ae65-8349dcb2f04b.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
     
     <script>
-        // Enhanced cyberpunk effects and interactions
+        // Audio Player Functionality
+        class AudioController {
+            constructor() {
+                this.audioPlayer = document.getElementById('audioPlayer');
+                this.playButton = document.getElementById('playButton');
+                this.audioStatus = document.getElementById('audioStatus');
+                this.playIcon = this.playButton.querySelector('.play-icon');
+                this.isPlaying = false;
+                this.init();
+            }
+
+            init() {
+                // Play button click handler
+                this.playButton.addEventListener('click', () => {
+                    this.togglePlay();
+                });
+
+                // Audio event listeners
+                this.audioPlayer.addEventListener('loadstart', () => {
+                    this.audioStatus.textContent = 'Loading Made in Romania...';
+                });
+
+                this.audioPlayer.addEventListener('canplay', () => {
+                    this.audioStatus.textContent = 'Ready to play ⚡';
+                });
+
+                this.audioPlayer.addEventListener('play', () => {
+                    this.isPlaying = true;
+                    this.updateUI();
+                    this.audioStatus.textContent = 'Now Playing: Made in Romania 🇷🇴';
+                });
+
+                this.audioPlayer.addEventListener('pause', () => {
+                    this.isPlaying = false;
+                    this.updateUI();
+                    this.audioStatus.textContent = 'Paused';
+                });
+
+                this.audioPlayer.addEventListener('ended', () => {
+                    this.isPlaying = false;
+                    this.updateUI();
+                    this.audioStatus.textContent = 'Track ended - Click to replay ⚡';
+                });
+
+                this.audioPlayer.addEventListener('error', (e) => {
+                    this.audioStatus.textContent = 'GitHub blocks direct audio - Save HTML file locally! 📁';
+                    console.error('Audio error:', e);
+                });
+
+                // Volume control
+                this.audioPlayer.volume = 0.7;
+            }
+
+            togglePlay() {
+                if (this.isPlaying) {
+                    this.audioPlayer.pause();
+                } else {
+                    // Handle autoplay restrictions
+                    const playPromise = this.audioPlayer.play();
+                    
+                    if (playPromise !== undefined) {
+                        playPromise
+                            .then(() => {
+                                // Audio started successfully
+                                this.triggerCyberEffect();
+                            })
+                            .catch(error => {
+                                console.warn('Autoplay prevented:', error);
+                                this.audioStatus.textContent = 'Click to enable audio 🔊';
+                            });
+                    }
+                }
+            }
+
+            updateUI() {
+                if (this.isPlaying) {
+                    this.playIcon.textContent = '⏸';
+                    this.playButton.classList.add('playing');
+                } else {
+                    this.playIcon.textContent = '▶';
+                    this.playButton.classList.remove('playing');
+                }
+            }
+
+            triggerCyberEffect() {
+                // Special effect when music starts
+                const title = document.querySelector('.main-title');
+                const originalColor = title.style.color;
+                
+                title.style.color = '#ff0080';
+                title.style.textShadow = '0 0 50px currentColor';
+                
+                setTimeout(() => {
+                    title.style.color = originalColor;
+                    title.style.textShadow = '';
+                }, 1000);
+
+                // Pulse all symbols
+                const symbols = document.querySelectorAll('.symbol');
+                symbols.forEach((symbol, index) => {
+                    setTimeout(() => {
+                        symbol.style.transform = 'scale(1.5)';
+                        symbol.style.opacity = '1';
+                        setTimeout(() => {
+                            symbol.style.transform = 'scale(1)';
+                            symbol.style.opacity = '0.3';
+                        }, 300);
+                    }, index * 100);
+                });
+            }
+        }
         class CyberEffects {
             constructor() {
                 this.init();
