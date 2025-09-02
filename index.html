@@ -309,109 +309,214 @@
             51%, 100% { opacity: 0.7; }
         }
 
-        /* Audio Play Button */
-        .audio-controls {
-            margin-top: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .play-button {
-            background: linear-gradient(145deg, transparent, rgba(0, 245, 255, 0.1));
-            border: 2px solid var(--neon-blue);
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
+        /* Enhanced Cyberpunk Background Elements */
+        .matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
             overflow: hidden;
-            animation: buttonPulse 2s ease-in-out infinite;
         }
 
-        .play-button:hover {
-            border-color: var(--neon-pink);
-            box-shadow: 0 0 30px var(--neon-pink);
-            transform: scale(1.1);
-        }
-
-        .play-button:active {
-            transform: scale(0.95);
-        }
-
-        .play-button::before {
-            content: '';
+        .matrix-column {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.5s ease;
-            opacity: 0;
-        }
-
-        .play-button:hover::before {
-            animation: shine 0.5s ease-in-out;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
-        }
-
-        @keyframes buttonPulse {
-            0%, 100% { 
-                box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
-            }
-            50% { 
-                box-shadow: 0 0 40px rgba(0, 245, 255, 0.6);
-            }
-        }
-
-        .play-icon {
-            font-size: 2rem;
-            color: var(--neon-blue);
-            text-shadow: 0 0 10px currentColor;
-            transition: all 0.3s ease;
-        }
-
-        .play-button:hover .play-icon {
-            color: var(--neon-pink);
-        }
-
-        .play-button.playing {
-            border-color: var(--neon-green);
-            animation: playingPulse 1s ease-in-out infinite;
-        }
-
-        .play-button.playing .play-icon {
+            top: -100px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
             color: var(--neon-green);
-        }
-
-        @keyframes playingPulse {
-            0%, 100% { 
-                box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
-            }
-            50% { 
-                box-shadow: 0 0 60px rgba(0, 255, 65, 0.8);
-            }
-        }
-
-        .audio-status {
-            font-family: 'Rajdhani', monospace;
-            font-size: 1rem;
-            color: var(--text-secondary);
-            text-align: center;
-            min-height: 1.5rem;
             opacity: 0.8;
+            animation: matrixFall 8s linear infinite;
+        }
+
+        @keyframes matrixFall {
+            0% { transform: translateY(-100px); opacity: 1; }
+            100% { transform: translateY(calc(100vh + 100px)); opacity: 0; }
+        }
+
+        /* Holographic Overlays */
+        .hologram-layers {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .hologram-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                transparent 49%,
+                rgba(0, 245, 255, 0.02) 50%,
+                transparent 51%
+            );
+            animation: hologramShift 6s ease-in-out infinite;
+        }
+
+        .hologram-layer:nth-child(2) {
+            background: linear-gradient(
+                -45deg,
+                transparent 49%,
+                rgba(189, 0, 255, 0.02) 50%,
+                transparent 51%
+            );
+            animation-delay: 2s;
+        }
+
+        .hologram-layer:nth-child(3) {
+            background: linear-gradient(
+                90deg,
+                transparent 49%,
+                rgba(255, 0, 128, 0.02) 50%,
+                transparent 51%
+            );
+            animation-delay: 4s;
+        }
+
+        @keyframes hologramShift {
+            0%, 100% { transform: translateX(0) translateY(0); opacity: 0.3; }
+            50% { transform: translateX(20px) translateY(-10px); opacity: 0.7; }
+        }
+
+        /* Circuit Board Pattern */
+        .circuit-board {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+            opacity: 0.1;
+        }
+
+        .circuit-line {
+            position: absolute;
+            background: var(--electric-cyan);
+            animation: circuitPulse 4s ease-in-out infinite;
+        }
+
+        .circuit-horizontal {
+            height: 2px;
+            width: 200px;
+        }
+
+        .circuit-vertical {
+            width: 2px;
+            height: 200px;
+        }
+
+        .circuit-node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px currentColor;
+            animation: nodeGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes circuitPulse {
+            0%, 100% { opacity: 0.1; box-shadow: none; }
+            50% { opacity: 0.5; box-shadow: 0 0 20px currentColor; }
+        }
+
+        @keyframes nodeGlow {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+
+        /* Floating Data Particles */
+        .data-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .data-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: particleFloat 12s linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-20px) translateX(100px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Energy Waves */
+        .energy-waves {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 1000px;
+            height: 1000px;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: -3;
+        }
+
+        .energy-wave {
+            position: absolute;
+            border: 1px solid rgba(0, 245, 255, 0.1);
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            animation: waveExpand 8s ease-out infinite;
+        }
+
+        .energy-wave:nth-child(2) {
+            animation-delay: 2s;
+            border-color: rgba(189, 0, 255, 0.1);
+        }
+
+        .energy-wave:nth-child(3) {
+            animation-delay: 4s;
+            border-color: rgba(0, 255, 65, 0.1);
+        }
+
+        .energy-wave:nth-child(4) {
+            animation-delay: 6s;
+            border-color: rgba(255, 0, 128, 0.1);
+        }
+
+        @keyframes waveExpand {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
         }
 
         /* Cybersigilism Enhancements */
@@ -746,6 +851,31 @@
     </style>
 </head>
 <body>
+    <!-- Enhanced Cyberpunk Background Elements -->
+    <!-- Matrix Rain Effect -->
+    <div class="matrix-rain" id="matrixRain"></div>
+    
+    <!-- Holographic Layers -->
+    <div class="hologram-layers">
+        <div class="hologram-layer"></div>
+        <div class="hologram-layer"></div>
+        <div class="hologram-layer"></div>
+    </div>
+    
+    <!-- Circuit Board Pattern -->
+    <div class="circuit-board" id="circuitBoard"></div>
+    
+    <!-- Data Particles -->
+    <div class="data-particles" id="dataParticles"></div>
+    
+    <!-- Energy Waves -->
+    <div class="energy-waves">
+        <div class="energy-wave"></div>
+        <div class="energy-wave"></div>
+        <div class="energy-wave"></div>
+        <div class="energy-wave"></div>
+    </div>
+    
     <!-- Animated background grid -->
     <div class="grid-background"></div>
     
@@ -782,10 +912,8 @@
             
             <!-- Audio Controls -->
             <div class="audio-controls">
-                <button class="play-button" id="playButton">
-                    <span class="play-icon">▶</span>
-                </button>
-                <div class="audio-status" id="audioStatus">Click to play sound</div>
+
+
                 
 
             </div>
@@ -862,122 +990,121 @@
         </div>
     </div>
     
-    <!-- Hidden Audio Element -->
-    <audio id="audioPlayer" preload="none">
-        <source src="https://github.com/SpeedLovesRonaldo/PROJECTODESPEED/raw/main/25fcabd7-9c22-4244-ae65-8349dcb2f04b.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    
+
     <script>
-        // Audio Player Functionality
-        class AudioController {
+        // Enhanced Background Effects
+        class EnhancedCyberBackground {
             constructor() {
-                this.audioPlayer = document.getElementById('audioPlayer');
-                this.playButton = document.getElementById('playButton');
-                this.audioStatus = document.getElementById('audioStatus');
-                this.playIcon = this.playButton.querySelector('.play-icon');
-                this.isPlaying = false;
-                this.init();
+                this.initMatrixRain();
+                this.initCircuitBoard();
+                this.initDataParticles();
             }
 
-            init() {
-                // Play button click handler
-                this.playButton.addEventListener('click', () => {
-                    this.togglePlay();
-                });
-
-                // Audio event listeners
-                this.audioPlayer.addEventListener('loadstart', () => {
-                    this.audioStatus.textContent = 'Loading Made in Romania...';
-                });
-
-                this.audioPlayer.addEventListener('canplay', () => {
-                    this.audioStatus.textContent = 'Ready to play ⚡';
-                });
-
-                this.audioPlayer.addEventListener('play', () => {
-                    this.isPlaying = true;
-                    this.updateUI();
-                    this.audioStatus.textContent = 'Now Playing: Made in Romania 🇷🇴';
-                });
-
-                this.audioPlayer.addEventListener('pause', () => {
-                    this.isPlaying = false;
-                    this.updateUI();
-                    this.audioStatus.textContent = 'Paused';
-                });
-
-                this.audioPlayer.addEventListener('ended', () => {
-                    this.isPlaying = false;
-                    this.updateUI();
-                    this.audioStatus.textContent = 'Track ended - Click to replay ⚡';
-                });
-
-                this.audioPlayer.addEventListener('error', (e) => {
-                    this.audioStatus.textContent = 'GitHub blocks direct audio - Save HTML file locally! 📁';
-                    console.error('Audio error:', e);
-                });
-
-                // Volume control
-                this.audioPlayer.volume = 0.7;
-            }
-
-            togglePlay() {
-                if (this.isPlaying) {
-                    this.audioPlayer.pause();
-                } else {
-                    // Handle autoplay restrictions
-                    const playPromise = this.audioPlayer.play();
-                    
-                    if (playPromise !== undefined) {
-                        playPromise
-                            .then(() => {
-                                // Audio started successfully
-                                this.triggerCyberEffect();
-                            })
-                            .catch(error => {
-                                console.warn('Autoplay prevented:', error);
-                                this.audioStatus.textContent = 'Click to enable audio 🔊';
-                            });
-                    }
-                }
-            }
-
-            updateUI() {
-                if (this.isPlaying) {
-                    this.playIcon.textContent = '⏸';
-                    this.playButton.classList.add('playing');
-                } else {
-                    this.playIcon.textContent = '▶';
-                    this.playButton.classList.remove('playing');
-                }
-            }
-
-            triggerCyberEffect() {
-                // Special effect when music starts
-                const title = document.querySelector('.main-title');
-                const originalColor = title.style.color;
+            // Matrix-style falling code
+            initMatrixRain() {
+                const container = document.getElementById('matrixRain');
+                const chars = '01';
                 
-                title.style.color = '#ff0080';
-                title.style.textShadow = '0 0 50px currentColor';
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        this.createMatrixColumn(container, chars);
+                    }, i * 500);
+                }
+                
+                // Continue creating columns
+                setInterval(() => {
+                    this.createMatrixColumn(container, chars);
+                }, 1000);
+            }
+
+            createMatrixColumn(container, chars) {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                column.style.left = Math.random() * 100 + '%';
+                column.style.animationDuration = (3 + Math.random() * 5) + 's';
+                column.style.animationDelay = Math.random() * 2 + 's';
+                
+                let text = '';
+                for (let i = 0; i < 20; i++) {
+                    text += chars[Math.floor(Math.random() * chars.length)] + '<br>';
+                }
+                column.innerHTML = text;
+                
+                container.appendChild(column);
                 
                 setTimeout(() => {
-                    title.style.color = originalColor;
-                    title.style.textShadow = '';
-                }, 1000);
+                    if (column.parentNode) {
+                        column.parentNode.removeChild(column);
+                    }
+                }, 8000);
+            }
 
-                // Pulse all symbols
-                const symbols = document.querySelectorAll('.symbol');
-                symbols.forEach((symbol, index) => {
+            // Circuit board pattern
+            initCircuitBoard() {
+                const container = document.getElementById('circuitBoard');
+                
+                // Create circuit lines
+                for (let i = 0; i < 15; i++) {
+                    this.createCircuitLine(container, true); // horizontal
+                    this.createCircuitLine(container, false); // vertical
+                }
+                
+                // Create nodes
+                for (let i = 0; i < 25; i++) {
+                    this.createCircuitNode(container);
+                }
+            }
+
+            createCircuitLine(container, horizontal) {
+                const line = document.createElement('div');
+                line.className = `circuit-line ${horizontal ? 'circuit-horizontal' : 'circuit-vertical'}`;
+                line.style.top = Math.random() * 100 + '%';
+                line.style.left = Math.random() * 100 + '%';
+                line.style.animationDelay = Math.random() * 4 + 's';
+                container.appendChild(line);
+            }
+
+            createCircuitNode(container) {
+                const node = document.createElement('div');
+                node.className = 'circuit-node';
+                node.style.top = Math.random() * 100 + '%';
+                node.style.left = Math.random() * 100 + '%';
+                node.style.animationDelay = Math.random() * 3 + 's';
+                container.appendChild(node);
+            }
+
+            // Floating data particles
+            initDataParticles() {
+                const container = document.getElementById('dataParticles');
+                
+                for (let i = 0; i < 30; i++) {
                     setTimeout(() => {
-                        symbol.style.transform = 'scale(1.5)';
-                        symbol.style.opacity = '1';
-                        setTimeout(() => {
-                            symbol.style.transform = 'scale(1)';
-                            symbol.style.opacity = '0.3';
-                        }, 300);
-                    }, index * 100);
-                });
+                        this.createDataParticle(container);
+                    }, i * 400);
+                }
+                
+                setInterval(() => {
+                    this.createDataParticle(container);
+                }, 1200);
+            }
+
+            createDataParticle(container) {
+                const particle = document.createElement('div');
+                particle.className = 'data-particle';
+                
+                const colors = ['#00f5ff', '#bd00ff', '#00ffff', '#ff0080', '#00ff41'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (8 + Math.random() * 8) + 's';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                
+                container.appendChild(particle);
+                
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 16000);
             }
         }
         class CyberEffects {
