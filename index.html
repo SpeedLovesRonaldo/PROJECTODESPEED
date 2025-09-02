@@ -62,7 +62,7 @@
             100% { transform: translate(50px, 50px); }
         }
 
-        /* Floating Cybersigilism Symbols */
+        /* Floating Cybersigilism Symbols - Enhanced */
         .cyber-symbols {
             position: fixed;
             top: 0;
@@ -79,8 +79,10 @@
             color: var(--neon-blue);
             opacity: 0.3;
             animation: float 15s ease-in-out infinite;
+            filter: blur(0.5px);
         }
 
+        /* Enhanced Cybersigilism Symbols */
         .symbol-1 {
             top: 10%;
             left: 15%;
@@ -135,6 +137,39 @@
             left: 25%;
             animation-delay: 14s;
             color: var(--neon-pink);
+        }
+
+        /* Additional Cybersigilism symbols */
+        .symbol-9 {
+            top: 35%;
+            left: 80%;
+            animation-delay: 16s;
+            color: var(--neon-green);
+            font-size: 1.5rem;
+        }
+
+        .symbol-10 {
+            bottom: 10%;
+            left: 40%;
+            animation-delay: 18s;
+            color: var(--electric-cyan);
+            font-size: 2.5rem;
+        }
+
+        .symbol-11 {
+            top: 5%;
+            left: 30%;
+            animation-delay: 20s;
+            color: var(--neon-blue);
+            font-size: 1.8rem;
+        }
+
+        .symbol-12 {
+            bottom: 50%;
+            right: 5%;
+            animation-delay: 22s;
+            color: var(--neon-pink);
+            font-size: 2.2rem;
         }
 
         @keyframes float {
@@ -272,6 +307,192 @@
         @keyframes typewriter {
             0%, 50% { opacity: 1; }
             51%, 100% { opacity: 0.7; }
+        }
+
+        /* Audio Play Button */
+        .audio-controls {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .play-button {
+            background: linear-gradient(145deg, transparent, rgba(0, 245, 255, 0.1));
+            border: 2px solid var(--neon-blue);
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: buttonPulse 2s ease-in-out infinite;
+        }
+
+        .play-button:hover {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 30px var(--neon-pink);
+            transform: scale(1.1);
+        }
+
+        .play-button:active {
+            transform: scale(0.95);
+        }
+
+        .play-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .play-button:hover::before {
+            animation: shine 0.5s ease-in-out;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(0, 245, 255, 0.6);
+            }
+        }
+
+        .play-icon {
+            font-size: 2rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px currentColor;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover .play-icon {
+            color: var(--neon-pink);
+        }
+
+        .play-button.playing {
+            border-color: var(--neon-green);
+            animation: playingPulse 1s ease-in-out infinite;
+        }
+
+        .play-button.playing .play-icon {
+            color: var(--neon-green);
+        }
+
+        @keyframes playingPulse {
+            0%, 100% { 
+                box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+            }
+            50% { 
+                box-shadow: 0 0 60px rgba(0, 255, 65, 0.8);
+            }
+        }
+
+        .audio-status {
+            font-family: 'Rajdhani', monospace;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            text-align: center;
+            min-height: 1.5rem;
+            opacity: 0.8;
+        }
+
+        /* Cybersigilism Enhancements */
+        .cyber-sigil-ring {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            border-radius: 50%;
+            animation: sigilRotate 30s linear infinite;
+        }
+
+        .cyber-sigil-ring::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            width: 4px;
+            height: 4px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        .cyber-sigil-ring::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 4px;
+            height: 4px;
+            background: var(--neon-pink);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        @keyframes sigilRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .neural-network {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            pointer-events: none;
+        }
+
+        .neural-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--electric-cyan), transparent);
+            animation: neuralPulse 3s ease-in-out infinite;
+            opacity: 0.4;
+        }
+
+        @keyframes neuralPulse {
+            0%, 100% { opacity: 0.2; transform: scaleX(0.5); }
+            50% { opacity: 0.8; transform: scaleX(1); }
+        }
+
+        .digital-runes {
+            position: absolute;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.8rem;
+            color: var(--neon-purple);
+            opacity: 0.6;
+            animation: runeGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes runeGlow {
+            0%, 100% { 
+                opacity: 0.3;
+                text-shadow: 0 0 5px currentColor;
+            }
+            50% { 
+                opacity: 0.8;
+                text-shadow: 0 0 20px currentColor;
+            }
         }
 
         /* Cyber Elements */
@@ -452,6 +673,15 @@
                 width: 100px !important;
                 right: 10px !important;
             }
+
+            .play-button {
+                width: 60px;
+                height: 60px;
+            }
+
+            .play-icon {
+                font-size: 1.5rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -476,6 +706,15 @@
 
             .data-stream {
                 display: none !important;
+            }
+
+            .play-button {
+                width: 50px;
+                height: 50px;
+            }
+
+            .play-icon {
+                font-size: 1.2rem;
             }
         }
 
@@ -520,6 +759,10 @@
         <div class="symbol symbol-6">⟡</div>
         <div class="symbol symbol-7">⧉</div>
         <div class="symbol symbol-8">⟢</div>
+        <div class="symbol symbol-9">⌬</div>
+        <div class="symbol symbol-10">⟁</div>
+        <div class="symbol symbol-11">⧪</div>
+        <div class="symbol symbol-12">⦾</div>
     </div>
     
     <!-- Glitch overlay -->
@@ -536,10 +779,39 @@
                 <span class="cyber-text">made in Romania</span>
                 <span class="bracket">]</span>
             </div>
+            
+            <!-- Audio Controls -->
+            <div class="audio-controls">
+                <button class="play-button" id="playButton">
+                    <span class="play-icon">▶</span>
+                </button>
+                <div class="audio-status" id="audioStatus">Click to play sound</div>
+                
+
+            </div>
         </div>
         
         <!-- Animated cyber elements -->
         <div class="cyber-elements">
+            <!-- Cybersigilism Ring -->
+            <div class="cyber-sigil-ring"></div>
+            
+            <!-- Neural Network Lines -->
+            <div class="neural-network">
+                <div class="neural-line" style="top: 100px; left: 50px; width: 120px; transform: rotate(30deg);"></div>
+                <div class="neural-line" style="top: 200px; left: 80px; width: 100px; transform: rotate(-45deg); animation-delay: 1s;"></div>
+                <div class="neural-line" style="top: 150px; right: 60px; width: 90px; transform: rotate(60deg); animation-delay: 2s;"></div>
+                <div class="neural-line" style="bottom: 120px; left: 40px; width: 110px; transform: rotate(-30deg); animation-delay: 0.5s;"></div>
+                <div class="neural-line" style="bottom: 180px; right: 50px; width: 95px; transform: rotate(15deg); animation-delay: 1.5s;"></div>
+            </div>
+            
+            <!-- Digital Runes -->
+            <div class="digital-runes" style="top: 50px; left: 20px; animation-delay: 0s;">ᚱᚢᚾᛖ</div>
+            <div class="digital-runes" style="top: 180px; right: 30px; animation-delay: 2s;">ᚲᛟᛞᛖ</div>
+            <div class="digital-runes" style="bottom: 80px; left: 40px; animation-delay: 4s;">ᛞᚨᛏᚨ</div>
+            <div class="digital-runes" style="bottom: 160px; right: 20px; animation-delay: 6s;">ᚾᛖᛏ</div>
+            
+            <!-- Original Hex Pattern -->
             <div class="hex-pattern">
                 <div class="hex"></div>
                 <div class="hex"></div>
@@ -589,6 +861,11 @@
             </svg>
         </div>
     </div>
+    
+    <!-- Hidden Audio Element -->
+    <audio id="audioPlayer" preload="none">
+        Your browser does not support the audio element.
+    </audio>
     
     <script>
         // Enhanced cyberpunk effects and interactions
@@ -745,117 +1022,3 @@
                     width: 200px;
                     height: 100%;
                     pointer-events: none;
-                    z-index: 1;
-                    font-family: 'Courier New', monospace;
-                    font-size: 10px;
-                    color: #00ff41;
-                    opacity: 0.4;
-                    overflow: hidden;
-                `;
-                document.body.appendChild(dataContainer);
-
-                this.generateDataStream(dataContainer);
-            }
-
-            generateDataStream(container) {
-                const dataChars = '01';
-                const streamHeight = window.innerHeight;
-                let currentY = 0;
-
-                const addDataLine = () => {
-                    const line = document.createElement('div');
-                    let content = '';
-                    for (let i = 0; i < 20; i++) {
-                        content += dataChars[Math.floor(Math.random() * dataChars.length)];
-                    }
-                    line.textContent = content;
-                    line.style.cssText = `
-                        position: absolute;
-                        top: ${currentY}px;
-                        white-space: nowrap;
-                        animation: dataFall 3s linear forwards;
-                    `;
-                    
-                    container.appendChild(line);
-                    currentY += 15;
-                    
-                    if (currentY > streamHeight) {
-                        currentY = -15;
-                    }
-
-                    setTimeout(() => {
-                        if (line.parentNode) {
-                            line.parentNode.removeChild(line);
-                        }
-                    }, 3000);
-                };
-
-                setInterval(addDataLine, 100);
-            }
-
-            // Initialize glitch effects
-            initGlitchEffect() {
-                const title = document.querySelector('.main-title');
-                
-                setInterval(() => {
-                    if (Math.random() > 0.95) {
-                        title.style.animation = 'none';
-                        title.offsetHeight; // Trigger reflow
-                        title.style.animation = 'textGlow 2s ease-in-out infinite alternate, glitch 0.1s ease-in-out';
-                        
-                        setTimeout(() => {
-                            title.style.animation = 'textGlow 2s ease-in-out infinite alternate';
-                        }, 100);
-                    }
-                }, 2000);
-            }
-        }
-
-        // Initialize effects when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize cyber effects
-            new CyberEffects();
-            
-            // Add keyboard interactions
-            document.addEventListener('keydown', (e) => {
-                if (e.code === 'Space') {
-                    e.preventDefault();
-                    const title = document.querySelector('.main-title');
-                    title.style.color = '#ff0080';
-                    setTimeout(() => {
-                        title.style.color = '#00f5ff';
-                    }, 200);
-                }
-            });
-            
-            // Performance optimization - reduce effects on low-end devices
-            if (navigator.hardwareConcurrency <= 2) {
-                document.documentElement.style.setProperty('--glow-intensity', '0 0 10px currentColor');
-            }
-        });
-
-        // Preload optimization
-        window.addEventListener('load', () => {
-            // Remove loading artifacts
-            document.body.style.opacity = '1';
-            
-            // Start audio context if needed (for future audio effects)
-            if (typeof(AudioContext) !== "undefined" || typeof(webkitAudioContext) !== "undefined") {
-                // Audio context ready for future enhancements
-            }
-        });
-
-        // Handle visibility changes for performance
-        document.addEventListener('visibilitychange', () => {
-            const isVisible = !document.hidden;
-            const animatedElements = document.querySelectorAll('.symbol, .hex, .corner');
-            
-            animatedElements.forEach(element => {
-                element.style.animationPlayState = isVisible ? 'running' : 'paused';
-            });
-        });
-    </script>
-</body>
-
-</html>
-
