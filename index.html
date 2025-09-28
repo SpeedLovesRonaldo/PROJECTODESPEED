@@ -211,7 +211,7 @@
         .container {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             min-height: 100vh;
             padding: 2rem;
@@ -219,10 +219,90 @@
             z-index: 10;
         }
 
-        /* Title Container */
+        /* Top Domain Purchase Section */
+        .domain-purchase {
+            text-align: center;
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            z-index: 20;
+        }
+
+        .domain-image {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 15px var(--neon-blue));
+            animation: imagePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes imagePulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 15px var(--neon-blue));
+            }
+            50% {
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 25px var(--electric-cyan));
+            }
+        }
+
+        .domain-text {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 600;
+            color: var(--neon-green);
+            text-shadow: 0 0 20px currentColor;
+            animation: domainGlow 2s ease-in-out infinite alternate;
+        }
+
+        .domain-link {
+            color: var(--electric-cyan);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .domain-link:hover {
+            color: var(--neon-pink);
+            text-shadow: 0 0 30px currentColor;
+            transform: scale(1.05);
+        }
+
+        .domain-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--electric-cyan), var(--neon-pink));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .domain-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        @keyframes domainGlow {
+            0% {
+                text-shadow: 0 0 20px currentColor;
+            }
+            100% {
+                text-shadow: 0 0 30px currentColor, 0 0 40px currentColor;
+            }
+        }
+
+        /* Title Container - Moved up */
         .title-container {
             text-align: center;
             position: relative;
+            margin-top: 1rem;
         }
 
         .main-title {
@@ -285,13 +365,21 @@
             80% { transform: translate(2px, -2px); }
         }
 
-        /* Enhanced Subtitle - Made In Ohio (Clean & Cool) */
+        /* Bottom Subtitle - Positioned at bottom */
+        .bottom-section {
+            position: fixed;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 20;
+        }
+
         .subtitle {
             font-family: 'Orbitron', monospace;
             font-size: clamp(1.5rem, 4vw, 2.5rem);
             font-weight: 600;
             color: var(--text-primary);
-            margin-top: 2rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
             position: relative;
@@ -773,6 +861,20 @@
                 font-size: clamp(2rem, 10vw, 4rem);
             }
             
+            .domain-purchase {
+                gap: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .domain-image {
+                width: 60px;
+                height: 60px;
+            }
+
+            .domain-text {
+                font-size: clamp(1rem, 4vw, 1.4rem);
+            }
+            
             .hex-pattern {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
@@ -792,18 +894,8 @@
                 font-size: 1.5rem;
             }
 
-            .data-stream {
-                width: 100px !important;
-                right: 10px !important;
-            }
-
-            .play-button {
-                width: 60px;
-                height: 60px;
-            }
-
-            .play-icon {
-                font-size: 1.5rem;
+            .bottom-section {
+                bottom: 2rem;
             }
         }
 
@@ -816,6 +908,20 @@
             .subtitle {
                 font-size: clamp(0.8rem, 4vw, 1.2rem);
             }
+
+            .domain-purchase {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .domain-image {
+                width: 50px;
+                height: 50px;
+            }
+
+            .domain-text {
+                font-size: clamp(0.9rem, 4vw, 1.2rem);
+            }
             
             .corner {
                 width: 40px;
@@ -827,17 +933,8 @@
                 height: 40px;
             }
 
-            .data-stream {
-                display: none !important;
-            }
-
-            .play-button {
-                width: 50px;
-                height: 50px;
-            }
-
-            .play-icon {
-                font-size: 1.2rem;
+            .bottom-section {
+                bottom: 1.5rem;
             }
         }
 
@@ -910,377 +1007,4 @@
         <div class="symbol symbol-9">⌬</div>
         <div class="symbol symbol-10">⟁</div>
         <div class="symbol symbol-11">⧪</div>
-        <div class="symbol symbol-12">⦾</div>
-    </div>
-    
-    <!-- Glitch overlay -->
-    <div class="glitch-overlay"></div>
-    
-    <!-- Main content -->
-    <main class="container">
-        <div class="title-container">
-            <h1 class="main-title" data-text="CRISTIANO RONALDO">
-                ISHOWSPEED SUIIIIIIIIIIII
-            </h1>
-            <div class="subtitle">
-                <span class="bracket">⟨</span>
-                <span class="cyber-text">MADE IN OHIO {PORTUGAL}</span>
-                <span class="bracket">⟩</span>
-            </div>
-            
-            <!-- Audio Controls -->
-            <div class="audio-controls">
-
-
-                
-
-            </div>
-        </div>
-        
-        <!-- Animated cyber elements -->
-        <div class="cyber-elements">
-            <!-- Cybersigilism Ring -->
-            <div class="cyber-sigil-ring"></div>
-            
-            <!-- Neural Network Lines -->
-            <div class="neural-network">
-                <div class="neural-line" style="top: 100px; left: 50px; width: 120px; transform: rotate(30deg);"></div>
-                <div class="neural-line" style="top: 200px; left: 80px; width: 100px; transform: rotate(-45deg); animation-delay: 1s;"></div>
-                <div class="neural-line" style="top: 150px; right: 60px; width: 90px; transform: rotate(60deg); animation-delay: 2s;"></div>
-                <div class="neural-line" style="bottom: 120px; left: 40px; width: 110px; transform: rotate(-30deg); animation-delay: 0.5s;"></div>
-                <div class="neural-line" style="bottom: 180px; right: 50px; width: 95px; transform: rotate(15deg); animation-delay: 1.5s;"></div>
-            </div>
-            
-            <!-- Digital Runes -->
-            <div class="digital-runes" style="top: 50px; left: 20px; animation-delay: 0s;">ᚱᚢᚾᛖ</div>
-            <div class="digital-runes" style="top: 180px; right: 30px; animation-delay: 2s;">ᚲᛟᛞᛖ</div>
-            <div class="digital-runes" style="bottom: 80px; left: 40px; animation-delay: 4s;">ᛞᚨᛏᚨ</div>
-            <div class="digital-runes" style="bottom: 160px; right: 20px; animation-delay: 6s;">ᚾᛖᛏ</div>
-            
-            <!-- Original Hex Pattern -->
-            <div class="hex-pattern">
-                <div class="hex"></div>
-                <div class="hex"></div>
-                <div class="hex"></div>
-                <div class="hex"></div>
-                <div class="hex"></div>
-                <div class="hex"></div>
-            </div>
-        </div>
-        
-        <!-- Scanning lines -->
-        <div class="scan-lines"></div>
-    </main>
-    
-    <!-- Corner elements -->
-    <div class="corner-elements">
-        <div class="corner top-left">
-            <svg width="100" height="100" viewBox="0 0 100 100">
-                <path d="M20 20 L20 80 L80 80" stroke="var(--neon-blue)" stroke-width="2" fill="none" opacity="0.6"/>
-                <circle cx="20" cy="20" r="3" fill="var(--neon-blue)"/>
-                <circle cx="20" cy="80" r="3" fill="var(--neon-blue)"/>
-                <circle cx="80" cy="80" r="3" fill="var(--neon-blue)"/>
-            </svg>
-        </div>
-        <div class="corner top-right">
-            <svg width="100" height="100" viewBox="0 0 100 100">
-                <path d="M80 20 L80 80 L20 80" stroke="var(--neon-purple)" stroke-width="2" fill="none" opacity="0.6"/>
-                <circle cx="80" cy="20" r="3" fill="var(--neon-purple)"/>
-                <circle cx="80" cy="80" r="3" fill="var(--neon-purple)"/>
-                <circle cx="20" cy="80" r="3" fill="var(--neon-purple)"/>
-            </svg>
-        </div>
-        <div class="corner bottom-left">
-            <svg width="100" height="100" viewBox="0 0 100 100">
-                <path d="M20 80 L20 20 L80 20" stroke="var(--electric-cyan)" stroke-width="2" fill="none" opacity="0.6"/>
-                <circle cx="20" cy="80" r="3" fill="var(--electric-cyan)"/>
-                <circle cx="20" cy="20" r="3" fill="var(--electric-cyan)"/>
-                <circle cx="80" cy="20" r="3" fill="var(--electric-cyan)"/>
-            </svg>
-        </div>
-        <div class="corner bottom-right">
-            <svg width="100" height="100" viewBox="0 0 100 100">
-                <path d="M80 80 L80 20 L20 20" stroke="var(--neon-pink)" stroke-width="2" fill="none" opacity="0.6"/>
-                <circle cx="80" cy="80" r="3" fill="var(--neon-pink)"/>
-                <circle cx="80" cy="20" r="3" fill="var(--neon-pink)"/>
-                <circle cx="20" cy="20" r="3" fill="var(--neon-pink)"/>
-            </svg>
-        </div>
-    </div>
-    
-
-    <script>
-        // Enhanced Background Effects
-        class EnhancedCyberBackground {
-            constructor() {
-                this.initMatrixRain();
-                this.initCircuitBoard();
-                this.initDataParticles();
-            }
-
-            // Matrix-style falling code
-            initMatrixRain() {
-                const container = document.getElementById('matrixRain');
-                const chars = '01';
-                
-                for (let i = 0; i < 20; i++) {
-                    setTimeout(() => {
-                        this.createMatrixColumn(container, chars);
-                    }, i * 500);
-                }
-                
-                // Continue creating columns
-                setInterval(() => {
-                    this.createMatrixColumn(container, chars);
-                }, 1000);
-            }
-
-            createMatrixColumn(container, chars) {
-                const column = document.createElement('div');
-                column.className = 'matrix-column';
-                column.style.left = Math.random() * 100 + '%';
-                column.style.animationDuration = (3 + Math.random() * 5) + 's';
-                column.style.animationDelay = Math.random() * 2 + 's';
-                
-                let text = '';
-                for (let i = 0; i < 20; i++) {
-                    text += chars[Math.floor(Math.random() * chars.length)] + '<br>';
-                }
-                column.innerHTML = text;
-                
-                container.appendChild(column);
-                
-                setTimeout(() => {
-                    if (column.parentNode) {
-                        column.parentNode.removeChild(column);
-                    }
-                }, 8000);
-            }
-
-            // Circuit board pattern
-            initCircuitBoard() {
-                const container = document.getElementById('circuitBoard');
-                
-                // Create circuit lines
-                for (let i = 0; i < 15; i++) {
-                    this.createCircuitLine(container, true); // horizontal
-                    this.createCircuitLine(container, false); // vertical
-                }
-                
-                // Create nodes
-                for (let i = 0; i < 25; i++) {
-                    this.createCircuitNode(container);
-                }
-            }
-
-            createCircuitLine(container, horizontal) {
-                const line = document.createElement('div');
-                line.className = `circuit-line ${horizontal ? 'circuit-horizontal' : 'circuit-vertical'}`;
-                line.style.top = Math.random() * 100 + '%';
-                line.style.left = Math.random() * 100 + '%';
-                line.style.animationDelay = Math.random() * 4 + 's';
-                container.appendChild(line);
-            }
-
-            createCircuitNode(container) {
-                const node = document.createElement('div');
-                node.className = 'circuit-node';
-                node.style.top = Math.random() * 100 + '%';
-                node.style.left = Math.random() * 100 + '%';
-                node.style.animationDelay = Math.random() * 3 + 's';
-                container.appendChild(node);
-            }
-
-            // Floating data particles
-            initDataParticles() {
-                const container = document.getElementById('dataParticles');
-                
-                for (let i = 0; i < 30; i++) {
-                    setTimeout(() => {
-                        this.createDataParticle(container);
-                    }, i * 400);
-                }
-                
-                setInterval(() => {
-                    this.createDataParticle(container);
-                }, 1200);
-            }
-
-            createDataParticle(container) {
-                const particle = document.createElement('div');
-                particle.className = 'data-particle';
-                
-                const colors = ['#00f5ff', '#bd00ff', '#00ffff', '#ff0080', '#00ff41'];
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDuration = (8 + Math.random() * 8) + 's';
-                particle.style.animationDelay = Math.random() * 2 + 's';
-                
-                container.appendChild(particle);
-                
-                setTimeout(() => {
-                    if (particle.parentNode) {
-                        particle.parentNode.removeChild(particle);
-                    }
-                }, 16000);
-            }
-        }
-        class CyberEffects {
-            constructor() {
-                this.init();
-            }
-
-            init() {
-                this.createParticles();
-                this.addInteractivity();
-                this.startDataStream();
-                this.initGlitchEffect();
-            }
-
-            // Create floating particles for enhanced atmosphere
-            createParticles() {
-                const particleContainer = document.createElement('div');
-                particleContainer.className = 'particle-container';
-                particleContainer.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    pointer-events: none;
-                    z-index: 2;
-                `;
-                document.body.appendChild(particleContainer);
-
-                // Create particles
-                for (let i = 0; i < 50; i++) {
-                    this.createParticle(particleContainer);
-                }
-            }
-
-            createParticle(container) {
-                const particle = document.createElement('div');
-                const colors = ['#00f5ff', '#bd00ff', '#00ffff', '#ff0080', '#00ff41'];
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                
-                particle.style.cssText = `
-                    position: absolute;
-                    width: 2px;
-                    height: 2px;
-                    background: ${color};
-                    box-shadow: 0 0 6px ${color};
-                    border-radius: 50%;
-                    opacity: 0;
-                `;
-
-                this.animateParticle(particle);
-                container.appendChild(particle);
-            }
-
-            animateParticle(particle) {
-                const startX = Math.random() * window.innerWidth;
-                const startY = window.innerHeight + 10;
-                const endY = -10;
-                const duration = 3000 + Math.random() * 4000;
-                const delay = Math.random() * 2000;
-
-                particle.style.left = startX + 'px';
-                particle.style.top = startY + 'px';
-
-                setTimeout(() => {
-                    particle.style.transition = `transform ${duration}ms linear, opacity ${duration}ms ease-out`;
-                    particle.style.opacity = '0.8';
-                    particle.style.transform = `translateY(${endY - startY}px) translateX(${(Math.random() - 0.5) * 100}px)`;
-
-                    setTimeout(() => {
-                        particle.style.opacity = '0';
-                        setTimeout(() => {
-                            if (particle.parentNode) {
-                                particle.parentNode.removeChild(particle);
-                                this.createParticle(particle.parentNode);
-                            }
-                        }, 1000);
-                    }, duration - 1000);
-                }, delay);
-            }
-
-            // Add mouse interaction effects
-            addInteractivity() {
-                let mouseX = 0;
-                let mouseY = 0;
-
-                document.addEventListener('mousemove', (e) => {
-                    mouseX = e.clientX;
-                    mouseY = e.clientY;
-                    this.updateCursorEffect(mouseX, mouseY);
-                });
-
-                // Create cursor trail effect
-                this.createCursorTrail();
-            }
-
-            createCursorTrail() {
-                const trail = document.createElement('div');
-                trail.className = 'cursor-trail';
-                trail.style.cssText = `
-                    position: fixed;
-                    width: 20px;
-                    height: 20px;
-                    border: 2px solid #00f5ff;
-                    border-radius: 50%;
-                    pointer-events: none;
-                    z-index: 9999;
-                    opacity: 0;
-                    transition: all 0.1s ease;
-                    box-shadow: 0 0 20px #00f5ff;
-                `;
-                document.body.appendChild(trail);
-
-                document.addEventListener('mousemove', (e) => {
-                    trail.style.left = (e.clientX - 10) + 'px';
-                    trail.style.top = (e.clientY - 10) + 'px';
-                    trail.style.opacity = '0.6';
-                });
-
-                document.addEventListener('mouseleave', () => {
-                    trail.style.opacity = '0';
-                });
-            }
-
-            updateCursorEffect(x, y) {
-                const symbols = document.querySelectorAll('.symbol');
-                symbols.forEach(symbol => {
-                    const rect = symbol.getBoundingClientRect();
-                    const distance = Math.sqrt(
-                        Math.pow(x - (rect.left + rect.width / 2), 2) + 
-                        Math.pow(y - (rect.top + rect.height / 2), 2)
-                    );
-                    
-                    if (distance < 100) {
-                        const intensity = 1 - (distance / 100);
-                        symbol.style.opacity = 0.3 + (intensity * 0.7);
-                        symbol.style.transform = `scale(${1 + intensity * 0.5})`;
-                    } else {
-                        symbol.style.opacity = '0.3';
-                        symbol.style.transform = 'scale(1)';
-                    }
-                });
-            }
-
-            // Create animated data stream effect
-            startDataStream() {
-                const dataContainer = document.createElement('div');
-                dataContainer.className = 'data-stream';
-                dataContainer.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    right: 20px;
-                    width: 200px;
-                    height: 100%;
-                    pointer-events: none;
-
-
-
-
-
-
+        <div class="symbol symbol-12">⦾
