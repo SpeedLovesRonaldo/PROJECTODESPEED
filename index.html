@@ -62,7 +62,7 @@
             100% { transform: translate(50px, 50px); }
         }
 
-        /* Floating Cybersigilism Symbols - Enhanced */
+        /* Floating Cybersigilism Symbols */
         .cyber-symbols {
             position: fixed;
             top: 0;
@@ -82,7 +82,6 @@
             filter: blur(0.5px);
         }
 
-        /* Enhanced Cybersigilism Symbols */
         .symbol-1 {
             top: 10%;
             left: 15%;
@@ -139,7 +138,6 @@
             color: var(--neon-pink);
         }
 
-        /* Additional Cybersigilism symbols */
         .symbol-9 {
             top: 35%;
             left: 80%;
@@ -207,11 +205,54 @@
             50% { opacity: 0.8; }
         }
 
+        /* Player Images - Large on sides */
+        .player-images {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .player-image {
+            position: absolute;
+            height: 80vh;
+            width: auto;
+            opacity: 0.6;
+            filter: drop-shadow(0 0 30px var(--neon-blue));
+            animation: playerGlow 4s ease-in-out infinite alternate;
+        }
+
+        .speed-image {
+            left: 2%;
+            top: 10%;
+            animation-delay: 0s;
+        }
+
+        .ronaldo-image {
+            right: 2%;
+            top: 10%;
+            animation-delay: 2s;
+        }
+
+        @keyframes playerGlow {
+            0% { 
+                filter: drop-shadow(0 0 30px var(--neon-blue));
+                opacity: 0.6;
+            }
+            100% { 
+                filter: drop-shadow(0 0 50px var(--electric-cyan)) drop-shadow(0 0 80px var(--neon-purple));
+                opacity: 0.8;
+            }
+        }
+
         /* Main Container */
         .container {
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: space-between;
             align-items: center;
             min-height: 100vh;
             padding: 2rem;
@@ -219,90 +260,63 @@
             z-index: 10;
         }
 
-        /* Top Domain Purchase Section */
-        .domain-purchase {
+        /* Domain Purchase Section - Top */
+        .domain-section {
             text-align: center;
+            position: relative;
             margin-top: 2rem;
-            margin-bottom: 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            z-index: 20;
-        }
-
-        .domain-image {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 15px var(--neon-blue));
-            animation: imagePulse 3s ease-in-out infinite;
-        }
-
-        @keyframes imagePulse {
-            0%, 100% {
-                transform: scale(1);
-                filter: drop-shadow(0 0 15px var(--neon-blue));
-            }
-            50% {
-                transform: scale(1.1);
-                filter: drop-shadow(0 0 25px var(--electric-cyan));
-            }
         }
 
         .domain-text {
             font-family: 'Orbitron', monospace;
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            font-weight: 600;
-            color: var(--neon-green);
-            text-shadow: 0 0 20px currentColor;
-            animation: domainGlow 2s ease-in-out infinite alternate;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            text-shadow: 0 0 20px var(--neon-green);
+            animation: domainPulse 3s ease-in-out infinite;
         }
 
         .domain-link {
             color: var(--electric-cyan);
             text-decoration: none;
-            transition: all 0.3s ease;
             position: relative;
+            text-shadow: 0 0 25px currentColor;
+            transition: all 0.3s ease;
         }
 
         .domain-link:hover {
             color: var(--neon-pink);
-            text-shadow: 0 0 30px currentColor;
-            transform: scale(1.05);
+            text-shadow: 0 0 40px currentColor;
+            transform: scale(1.1);
         }
 
         .domain-link::after {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: -5px;
             left: 0;
             width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--electric-cyan), var(--neon-pink));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
+            height: 3px;
+            background: linear-gradient(90deg, var(--electric-cyan), var(--neon-pink), var(--electric-cyan));
+            animation: linkUnderline 2s ease-in-out infinite;
         }
 
-        .domain-link:hover::after {
-            transform: scaleX(1);
+        @keyframes domainPulse {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; text-shadow: 0 0 30px var(--neon-green); }
         }
 
-        @keyframes domainGlow {
-            0% {
-                text-shadow: 0 0 20px currentColor;
-            }
-            100% {
-                text-shadow: 0 0 30px currentColor, 0 0 40px currentColor;
-            }
+        @keyframes linkUnderline {
+            0%, 100% { transform: scaleX(1); opacity: 0.6; }
+            50% { transform: scaleX(1.2); opacity: 1; }
         }
 
-        /* Title Container - Moved up */
+        /* Title Container - Middle */
         .title-container {
             text-align: center;
             position: relative;
-            margin-top: 1rem;
         }
 
         .main-title {
@@ -342,6 +356,19 @@
             animation: glitch 0.3s ease-in-out infinite reverse;
         }
 
+        .secondary-title {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(2rem, 6vw, 5rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--neon-purple);
+            text-shadow: var(--glow-intensity);
+            position: relative;
+            animation: textGlow 2.5s ease-in-out infinite alternate;
+            margin-top: 1rem;
+        }
+
         @keyframes textGlow {
             0% {
                 text-shadow: var(--glow-intensity);
@@ -365,16 +392,7 @@
             80% { transform: translate(2px, -2px); }
         }
 
-        /* Bottom Subtitle - Positioned at bottom */
-        .bottom-section {
-            position: fixed;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            z-index: 20;
-        }
-
+        /* Bottom Subtitle */
         .subtitle {
             font-family: 'Orbitron', monospace;
             font-size: clamp(1.5rem, 4vw, 2.5rem);
@@ -384,6 +402,7 @@
             letter-spacing: 0.15em;
             position: relative;
             animation: subtitlePulse 4s ease-in-out infinite;
+            margin-bottom: 2rem;
         }
 
         .bracket {
@@ -415,7 +434,7 @@
             }
         }
 
-        /* Enhanced Cyberpunk Background Elements */
+        /* Matrix Rain */
         .matrix-rain {
             position: fixed;
             top: 0;
@@ -442,460 +461,40 @@
             100% { transform: translateY(calc(100vh + 100px)); opacity: 0; }
         }
 
-        /* Holographic Overlays */
-        .hologram-layers {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .hologram-layer {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                45deg,
-                transparent 49%,
-                rgba(0, 245, 255, 0.02) 50%,
-                transparent 51%
-            );
-            animation: hologramShift 6s ease-in-out infinite;
-        }
-
-        .hologram-layer:nth-child(2) {
-            background: linear-gradient(
-                -45deg,
-                transparent 49%,
-                rgba(189, 0, 255, 0.02) 50%,
-                transparent 51%
-            );
-            animation-delay: 2s;
-        }
-
-        .hologram-layer:nth-child(3) {
-            background: linear-gradient(
-                90deg,
-                transparent 49%,
-                rgba(255, 0, 128, 0.02) 50%,
-                transparent 51%
-            );
-            animation-delay: 4s;
-        }
-
-        @keyframes hologramShift {
-            0%, 100% { transform: translateX(0) translateY(0); opacity: 0.3; }
-            50% { transform: translateX(20px) translateY(-10px); opacity: 0.7; }
-        }
-
-        /* Circuit Board Pattern */
-        .circuit-board {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -2;
-            opacity: 0.1;
-        }
-
-        .circuit-line {
-            position: absolute;
-            background: var(--electric-cyan);
-            animation: circuitPulse 4s ease-in-out infinite;
-        }
-
-        .circuit-horizontal {
-            height: 2px;
-            width: 200px;
-        }
-
-        .circuit-vertical {
-            width: 2px;
-            height: 200px;
-        }
-
-        .circuit-node {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: var(--neon-blue);
-            border-radius: 50%;
-            box-shadow: 0 0 10px currentColor;
-            animation: nodeGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes circuitPulse {
-            0%, 100% { opacity: 0.1; box-shadow: none; }
-            50% { opacity: 0.5; box-shadow: 0 0 20px currentColor; }
-        }
-
-        @keyframes nodeGlow {
-            0%, 100% { transform: scale(1); opacity: 0.3; }
-            50% { transform: scale(1.5); opacity: 1; }
-        }
-
-        /* Floating Data Particles */
-        .data-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .data-particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--neon-blue);
-            border-radius: 50%;
-            opacity: 0.6;
-            animation: particleFloat 12s linear infinite;
-        }
-
-        @keyframes particleFloat {
-            0% {
-                transform: translateY(100vh) translateX(0) scale(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-20px) translateX(100px) scale(0);
-                opacity: 0;
-            }
-        }
-
-        /* Energy Waves */
-        .energy-waves {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 1000px;
-            height: 1000px;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: -3;
-        }
-
-        .energy-wave {
-            position: absolute;
-            border: 1px solid rgba(0, 245, 255, 0.1);
-            border-radius: 50%;
-            width: 100%;
-            height: 100%;
-            animation: waveExpand 8s ease-out infinite;
-        }
-
-        .energy-wave:nth-child(2) {
-            animation-delay: 2s;
-            border-color: rgba(189, 0, 255, 0.1);
-        }
-
-        .energy-wave:nth-child(3) {
-            animation-delay: 4s;
-            border-color: rgba(0, 255, 65, 0.1);
-        }
-
-        .energy-wave:nth-child(4) {
-            animation-delay: 6s;
-            border-color: rgba(255, 0, 128, 0.1);
-        }
-
-        @keyframes waveExpand {
-            0% {
-                transform: scale(0);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 0;
-            }
-        }
-
-        /* Cybersigilism Enhancements */
-        .cyber-sigil-ring {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border: 1px solid rgba(0, 245, 255, 0.3);
-            border-radius: 50%;
-            animation: sigilRotate 30s linear infinite;
-        }
-
-        .cyber-sigil-ring::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: 50%;
-            width: 4px;
-            height: 4px;
-            background: var(--neon-blue);
-            border-radius: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 10px currentColor;
-        }
-
-        .cyber-sigil-ring::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 50%;
-            width: 4px;
-            height: 4px;
-            background: var(--neon-pink);
-            border-radius: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 10px currentColor;
-        }
-
-        @keyframes sigilRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .neural-network {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            pointer-events: none;
-        }
-
-        .neural-line {
-            position: absolute;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--electric-cyan), transparent);
-            animation: neuralPulse 3s ease-in-out infinite;
-            opacity: 0.4;
-        }
-
-        @keyframes neuralPulse {
-            0%, 100% { opacity: 0.2; transform: scaleX(0.5); }
-            50% { opacity: 0.8; transform: scaleX(1); }
-        }
-
-        .digital-runes {
-            position: absolute;
-            font-family: 'Orbitron', monospace;
-            font-size: 0.8rem;
-            color: var(--neon-purple);
-            opacity: 0.6;
-            animation: runeGlow 4s ease-in-out infinite;
-        }
-
-        @keyframes runeGlow {
-            0%, 100% { 
-                opacity: 0.3;
-                text-shadow: 0 0 5px currentColor;
-            }
-            50% { 
-                opacity: 0.8;
-                text-shadow: 0 0 20px currentColor;
-            }
-        }
-
-        /* Cyber Elements */
-        .cyber-elements {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-        }
-
-        .hex-pattern {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            animation: hexRotate 20s linear infinite;
-        }
-
-        .hex {
-            width: 60px;
-            height: 60px;
-            background: transparent;
-            border: 2px solid var(--neon-blue);
-            position: relative;
-            transform: rotate(45deg);
-            opacity: 0.3;
-            animation: hexPulse 3s ease-in-out infinite;
-        }
-
-        .hex:nth-child(odd) {
-            border-color: var(--neon-purple);
-            animation-delay: 1s;
-        }
-
-        .hex:nth-child(3n) {
-            border-color: var(--electric-cyan);
-            animation-delay: 2s;
-        }
-
-        @keyframes hexRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes hexPulse {
-            0%, 100% {
-                opacity: 0.3;
-                box-shadow: 0 0 0 currentColor;
-            }
-            50% {
-                opacity: 0.8;
-                box-shadow: 0 0 20px currentColor;
-            }
-        }
-
-        /* Scanning Lines */
-        .scan-lines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 4px,
-                rgba(0, 245, 255, 0.05) 4px,
-                rgba(0, 245, 255, 0.05) 6px
-            );
-            pointer-events: none;
-            z-index: 5;
-            animation: scanMove 2s linear infinite;
-        }
-
-        @keyframes scanMove {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100vh); }
-        }
-
-        /* Corner Elements */
-        .corner-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .corner {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-        }
-
-        .top-left {
-            top: 2rem;
-            left: 2rem;
-            animation: cornerGlow 4s ease-in-out infinite;
-        }
-
-        .top-right {
-            top: 2rem;
-            right: 2rem;
-            animation: cornerGlow 4s ease-in-out infinite 1s;
-        }
-
-        .bottom-left {
-            bottom: 2rem;
-            left: 2rem;
-            animation: cornerGlow 4s ease-in-out infinite 2s;
-        }
-
-        .bottom-right {
-            bottom: 2rem;
-            right: 2rem;
-            animation: cornerGlow 4s ease-in-out infinite 3s;
-        }
-
-        @keyframes cornerGlow {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-        }
-
-        /* Additional JavaScript effects */
-        @keyframes dataFall {
-            0% {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-        }
-
-        .cursor-trail {
-            mix-blend-mode: screen;
-        }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
             }
             
+            .player-image {
+                height: 60vh;
+                opacity: 0.3;
+            }
+
+            .speed-image {
+                left: 1%;
+            }
+
+            .ronaldo-image {
+                right: 1%;
+            }
+            
             .main-title {
                 font-size: clamp(2rem, 10vw, 4rem);
             }
-            
-            .domain-purchase {
-                gap: 1rem;
-                margin-bottom: 2rem;
-            }
 
-            .domain-image {
-                width: 60px;
-                height: 60px;
+            .secondary-title {
+                font-size: clamp(1.5rem, 8vw, 3rem);
             }
 
             .domain-text {
-                font-size: clamp(1rem, 4vw, 1.4rem);
+                font-size: clamp(1.2rem, 5vw, 1.8rem);
             }
             
-            .hex-pattern {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-            
-            .hex {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .corner {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .symbol {
-                font-size: 1.5rem;
-            }
-
-            .bottom-section {
-                bottom: 2rem;
+            .subtitle {
+                font-size: clamp(1.2rem, 5vw, 2rem);
+                margin-bottom: 1rem;
             }
         }
 
@@ -904,37 +503,22 @@
                 font-size: clamp(1.5rem, 12vw, 3rem);
                 letter-spacing: 0.05em;
             }
-            
-            .subtitle {
-                font-size: clamp(0.8rem, 4vw, 1.2rem);
+
+            .secondary-title {
+                font-size: clamp(1.2rem, 10vw, 2.5rem);
             }
 
-            .domain-purchase {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .domain-image {
-                width: 50px;
-                height: 50px;
+            .player-image {
+                height: 50vh;
+                opacity: 0.2;
             }
 
             .domain-text {
-                font-size: clamp(0.9rem, 4vw, 1.2rem);
-            }
-            
-            .corner {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .corner svg {
-                width: 40px;
-                height: 40px;
+                font-size: clamp(1rem, 6vw, 1.5rem);
             }
 
-            .bottom-section {
-                bottom: 1.5rem;
+            .subtitle {
+                font-size: clamp(0.8rem, 4vw, 1.2rem);
             }
         }
 
@@ -957,54 +541,116 @@
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
-            
-            .scan-lines,
-            .glitch-overlay {
-                display: none;
-            }
         }
     </style>
 </head>
 <body>
     <!-- Enhanced Cyberpunk Background Elements -->
-    <!-- Matrix Rain Effect -->
-    <div class="matrix-rain" id="matrixRain"></div>
-    
-    <!-- Holographic Layers -->
-    <div class="hologram-layers">
-        <div class="hologram-layer"></div>
-        <div class="hologram-layer"></div>
-        <div class="hologram-layer"></div>
-    </div>
-    
-    <!-- Circuit Board Pattern -->
-    <div class="circuit-board" id="circuitBoard"></div>
-    
-    <!-- Data Particles -->
-    <div class="data-particles" id="dataParticles"></div>
-    
-    <!-- Energy Waves -->
-    <div class="energy-waves">
-        <div class="energy-wave"></div>
-        <div class="energy-wave"></div>
-        <div class="energy-wave"></div>
-        <div class="energy-wave"></div>
-    </div>
-    
-    <!-- Animated background grid -->
     <div class="grid-background"></div>
+    <div class="matrix-rain" id="matrixRain"></div>
+    <div class="glitch-overlay"></div>
     
-    <!-- Floating cybersigilism symbols -->
+    <!-- Large Player Images on Sides -->
+    <div class="player-images">
+        <img src="speed.png" alt="Speed" class="player-image speed-image">
+        <img src="ronaldo.png" alt="Ronaldo" class="player-image ronaldo-image">
+    </div>
+    
+    <!-- Floating Cybersigilism Symbols -->
     <div class="cyber-symbols">
-        <div class="symbol symbol-1">⧨</div>
-        <div class="symbol symbol-2">⟐</div>
-        <div class="symbol symbol-3">⧬</div>
-        <div class="symbol symbol-4">⦿</div>
-        <div class="symbol symbol-5">⧫</div>
+        <div class="symbol symbol-1">◊</div>
+        <div class="symbol symbol-2">◈</div>
+        <div class="symbol symbol-3">◇</div>
+        <div class="symbol symbol-4">◉</div>
+        <div class="symbol symbol-5">⟐</div>
         <div class="symbol symbol-6">⟡</div>
-        <div class="symbol symbol-7">⧉</div>
-        <div class="symbol symbol-8">⟢</div>
-        <div class="symbol symbol-9">⌬</div>
-        <div class="symbol symbol-10">⟁</div>
-        <div class="symbol symbol-11">⧪</div>
-        <div class="symbol symbol-12">⦾
+        <div class="symbol symbol-7">⧨</div>
+        <div class="symbol symbol-8">⧩</div>
+        <div class="symbol symbol-9">⬢</div>
+        <div class="symbol symbol-10">⬡</div>
+        <div class="symbol symbol-11">⬟</div>
+        <div class="symbol symbol-12">⬠</div>
+    </div>
+    
+    <!-- Main content -->
+    <main class="container">
+        <!-- Domain Purchase Section - Top -->
+        <div class="domain-section">
+            <div class="domain-text">
+                BUY THIS DOMAIN 
+                <a href="https://unstoppabledomains.com/d/greenapples.fun" class="domain-link" target="_blank" rel="noopener noreferrer">HERE</a>
+            </div>
+        </div>
+
+        <!-- Title Container - Middle -->
+        <div class="title-container">
+            <h1 class="main-title" data-text="ISHOWSPEED SUIIIIII">
+                ISHOWSPEED SUIIIIII
+            </h1>
+            <h2 class="secondary-title" data-text="CRISTIANO RONALDO">
+                CRISTIANO RONALDO
+            </h2>
+        </div>
+
+        <!-- Bottom Subtitle -->
+        <div class="subtitle">
+            <span class="bracket">[</span>
+            <span class="cyber-text">Made in Ohio, portugal</span>
+            <span class="bracket">]</span>
+        </div>
+    </main>
+
+    <script>
+        // Enhanced Background Effects
+        class EnhancedCyberBackground {
+            constructor() {
+                this.initMatrixRain();
+            }
+
+            // Matrix-style falling code
+            initMatrixRain() {
+                const container = document.getElementById('matrixRain');
+                const chars = '01';
+                
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        this.createMatrixColumn(container, chars);
+                    }, i * 500);
+                }
+                
+                // Continue creating columns
+                setInterval(() => {
+                    this.createMatrixColumn(container, chars);
+                }, 1000);
+            }
+
+            createMatrixColumn(container, chars) {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                column.style.left = Math.random() * 100 + '%';
+                column.style.animationDuration = (3 + Math.random() * 5) + 's';
+                column.style.animationDelay = Math.random() * 2 + 's';
+                
+                let text = '';
+                for (let i = 0; i < 20; i++) {
+                    text += chars[Math.floor(Math.random() * chars.length)] + '<br>';
+                }
+                column.innerHTML = text;
+                
+                container.appendChild(column);
+                
+                setTimeout(() => {
+                    if (column.parentNode) {
+                        column.parentNode.removeChild(column);
+                    }
+                }, 8000);
+            }
+        }
+
+        // Initialize effects when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new EnhancedCyberBackground();
+        });
+    </script>
+</body>
+</html>
