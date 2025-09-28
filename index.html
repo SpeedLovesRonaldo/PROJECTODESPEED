@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ISHOWSPEED SUIIIIII</title>
-    <link rel="icon" type="image/png" href="green.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -230,7 +229,6 @@
             left: 2%;
             top: 10%;
             animation-delay: 0s;
-            height: 85vh; /* Increased size to match Ronaldo */
         }
 
         .ronaldo-image {
@@ -323,7 +321,7 @@
 
         .main-title {
             font-family: 'Orbitron', monospace;
-            font-size: clamp(2.5rem, 6vw, 6rem); /* Made smaller */
+            font-size: clamp(3rem, 8vw, 8rem);
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -360,7 +358,7 @@
 
         .secondary-title {
             font-family: 'Orbitron', monospace;
-            font-size: clamp(1.5rem, 4vw, 3.5rem); /* Made smaller */
+            font-size: clamp(2rem, 6vw, 5rem);
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -444,148 +442,216 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: -4;
+            z-index: -1;
             overflow: hidden;
         }
 
         .matrix-column {
             position: absolute;
-            top: -100%;
+            top: -100px;
             font-family: 'Courier New', monospace;
-            font-size: 1rem;
+            font-size: 12px;
             color: var(--neon-green);
-            opacity: 0.7;
-            animation: matrixFall linear infinite;
+            opacity: 0.8;
+            animation: matrixFall 8s linear infinite;
         }
 
         @keyframes matrixFall {
-            0% { top: -100%; opacity: 0; }
-            10% { opacity: 0.7; }
-            90% { opacity: 0.7; }
-            100% { top: 100%; opacity: 0; }
+            0% { transform: translateY(-100px); opacity: 1; }
+            100% { transform: translateY(calc(100vh + 100px)); opacity: 0; }
         }
 
-        /* Responsive adjustments */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .speed-image, .ronaldo-image {
-                height: 60vh;
+            .container {
+                padding: 1rem;
             }
             
             .player-image {
                 height: 60vh;
+                opacity: 0.3;
+            }
+
+            .speed-image {
+                left: 1%;
+            }
+
+            .ronaldo-image {
+                right: 1%;
+            }
+            
+            .main-title {
+                font-size: clamp(2rem, 10vw, 4rem);
+            }
+
+            .secondary-title {
+                font-size: clamp(1.5rem, 8vw, 3rem);
+            }
+
+            .domain-text {
+                font-size: clamp(1.2rem, 5vw, 1.8rem);
+            }
+            
+            .subtitle {
+                font-size: clamp(1.2rem, 5vw, 2rem);
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: clamp(1.5rem, 12vw, 3rem);
+                letter-spacing: 0.05em;
+            }
+
+            .secondary-title {
+                font-size: clamp(1.2rem, 10vw, 2.5rem);
+            }
+
+            .player-image {
+                height: 50vh;
+                opacity: 0.2;
+            }
+
+            .domain-text {
+                font-size: clamp(1rem, 6vw, 1.5rem);
+            }
+
+            .subtitle {
+                font-size: clamp(0.8rem, 4vw, 1.2rem);
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --glow-intensity: 0 0 5px currentColor;
+            }
+            
+            .main-title::before,
+            .main-title::after {
+                display: none;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Animated Grid Background -->
+    <!-- Enhanced Cyberpunk Background Elements -->
     <div class="grid-background"></div>
-
-    <!-- Floating Cyber Symbols -->
+    <div class="matrix-rain" id="matrixRain"></div>
+    <div class="glitch-overlay"></div>
+    
+    <!-- Large Player Images on Sides -->
+    <div class="player-images">
+        <img src="speed.png" alt="Speed" class="player-image speed-image">
+        <img src="ronaldo.png" alt="Ronaldo" class="player-image ronaldo-image">
+    </div>
+    
+    <!-- Floating Cybersigilism Symbols -->
     <div class="cyber-symbols">
         <div class="symbol symbol-1">◊</div>
-        <div class="symbol symbol-2">▲</div>
-        <div class="symbol symbol-3">◆</div>
-        <div class="symbol symbol-4">■</div>
-        <div class="symbol symbol-5">●</div>
-        <div class="symbol symbol-6">▼</div>
-        <div class="symbol symbol-7">◈</div>
-        <div class="symbol symbol-8">⬢</div>
-        <div class="symbol symbol-9">⬡</div>
-        <div class="symbol symbol-10">◊</div>
-        <div class="symbol symbol-11">▲</div>
-        <div class="symbol symbol-12">◆</div>
+        <div class="symbol symbol-2">◈</div>
+        <div class="symbol symbol-3">◇</div>
+        <div class="symbol symbol-4">◉</div>
+        <div class="symbol symbol-5">⟐</div>
+        <div class="symbol symbol-6">⟡</div>
+        <div class="symbol symbol-7">⧨</div>
+        <div class="symbol symbol-8">⧩</div>
+        <div class="symbol symbol-9">⬢</div>
+        <div class="symbol symbol-10">⬡</div>
+        <div class="symbol symbol-11">⬟</div>
+        <div class="symbol symbol-12">⬠</div>
     </div>
-
-    <!-- Glitch Overlay -->
-    <div class="glitch-overlay"></div>
-
-    <!-- Matrix Rain Background -->
-    <div class="matrix-rain"></div>
-
-    <!-- Player Images -->
-    <div class="player-images">
-        <img src="speed.png" alt="IShowSpeed" class="player-image speed-image">
-        <img src="ronaldo.png" alt="Cristiano Ronaldo" class="player-image ronaldo-image">
-    </div>
-
-    <!-- Main Content Container -->
-    <div class="container">
-        <!-- Domain Purchase Section -->
+    
+    <!-- Main content -->
+    <main class="container">
+        <!-- Domain Purchase Section - Top -->
         <div class="domain-section">
             <div class="domain-text">
-                Get Your Domain at 
-                <a href="#" class="domain-link">CyberDomains.io</a>
+                BUY THIS DOMAIN 
+                <a href="https://unstoppabledomains.com/d/greenapples.fun" class="domain-link" target="_blank" rel="noopener noreferrer">HERE</a>
             </div>
         </div>
 
-        <!-- Main Title Section -->
+        <!-- Title Container - Middle -->
         <div class="title-container">
-            <h1 class="main-title" data-text="SUIIIIII">SUIIIIII</h1>
-            <h2 class="secondary-title">CRISTIANO RONALDO</h2>
+            <h1 class="main-title" data-text="ISHOWSPEED SUIIIIII">
+                ISHOWSPEED SUIIIIII
+            </h1>
+            <h2 class="secondary-title" data-text="CRISTIANO RONALDO">
+                CRISTIANO RONALDO
+            </h2>
         </div>
 
         <!-- Bottom Subtitle -->
         <div class="subtitle">
             <span class="bracket">[</span>
-            <span class="cyber-text">CYBER</span>
+            <span class="cyber-text">Made in Ohio, portugal</span>
             <span class="bracket">]</span>
-            ISHOWSPEED
         </div>
-    </div>
+    </main>
 
     <script>
-        // Matrix Rain Effect
-        function createMatrixRain() {
-            const matrixContainer = document.querySelector('.matrix-rain');
-            const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-            
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    const column = document.createElement('div');
-                    column.className = 'matrix-column';
-                    column.style.left = Math.random() * 100 + '%';
-                    column.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                    column.style.animationDelay = Math.random() * 2 + 's';
-                    
-                    let text = '';
-                    for (let j = 0; j < 20; j++) {
-                        text += characters.charAt(Math.floor(Math.random() * characters.length)) + '<br>';
-                    }
-                    column.innerHTML = text;
-                    
-                    matrixContainer.appendChild(column);
-                    
-                    // Remove column after animation
+        // Enhanced Background Effects
+        class EnhancedCyberBackground {
+            constructor() {
+                this.initMatrixRain();
+            }
+
+            // Matrix-style falling code
+            initMatrixRain() {
+                const container = document.getElementById('matrixRain');
+                const chars = '01';
+                
+                for (let i = 0; i < 20; i++) {
                     setTimeout(() => {
-                        if (column.parentNode) {
-                            column.parentNode.removeChild(column);
-                        }
-                    }, 5000);
-                }, i * 200);
+                        this.createMatrixColumn(container, chars);
+                    }, i * 500);
+                }
+                
+                // Continue creating columns
+                setInterval(() => {
+                    this.createMatrixColumn(container, chars);
+                }, 1000);
+            }
+
+            createMatrixColumn(container, chars) {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                column.style.left = Math.random() * 100 + '%';
+                column.style.animationDuration = (3 + Math.random() * 5) + 's';
+                column.style.animationDelay = Math.random() * 2 + 's';
+                
+                let text = '';
+                for (let i = 0; i < 20; i++) {
+                    text += chars[Math.floor(Math.random() * chars.length)] + '<br>';
+                }
+                column.innerHTML = text;
+                
+                container.appendChild(column);
+                
+                setTimeout(() => {
+                    if (column.parentNode) {
+                        column.parentNode.removeChild(column);
+                    }
+                }, 8000);
             }
         }
 
-        // Start matrix rain
-        createMatrixRain();
-        
-        // Continuously create new matrix columns
-        setInterval(createMatrixRain, 3000);
-
-        // Add subtle mouse movement effects
-        document.addEventListener('mousemove', (e) => {
-            const symbols = document.querySelectorAll('.symbol');
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
-            
-            symbols.forEach((symbol, index) => {
-                const speed = (index + 1) * 0.5;
-                const x = (mouseX - 0.5) * speed;
-                const y = (mouseY - 0.5) * speed;
-                
-                symbol.style.transform = `translate(${x}px, ${y}px) translateY(-20px) rotate(180deg)`;
-            });
+        // Initialize effects when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new EnhancedCyberBackground();
         });
     </script>
 </body>
 </html>
+
